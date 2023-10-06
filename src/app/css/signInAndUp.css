@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --Brown: #1a120b;
+    --cream: #e5e5cb;
+}
+
+main {
+    background: url("https://www.pictureframesexpress.co.uk/blog/wp-content/uploads/2020/05/7-Tips-to-Finding-Art-Inspiration-Header-1024x649.jpg");
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size: 100%;
+    background-blend-mode:multiply;
+    background-color: #33333382;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & #backTo {
+        text-decoration: none;
+        padding: 1rem;
+        padding-left: 10rem;
+        font-size: 1.8rem;
+        font-weight: bolder;
+        position: absolute;
+        top: 5%;
+        left: 0;
+        color: #fff;
+        background-color: rgba(240, 255, 255, 0.253);
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    & form {
+        width: 600px;
+        height: auto;
+        padding-inline: 1.2rem;
+        background-color: #dedede71;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        & h1 {
+            font-size: 4rem;
+            padding-block: 2rem;
+            color: #fff;
+            text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+        }
+        & p{ 
+            color: #fff;
+            text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        & .form_container {
+            padding: 1rem 2rem;
+            background: #3333336c;
+            border-radius: 20px;
+            padding-bottom: 2rem;
+
+            & .form_group {
+                & p {
+                    font-size: 1.2rem;
+                    padding-block: 0.5rem;
+                    font-weight: bolder;
+                }
+
+                & input {
+                    padding-block: 0.5rem;
+                    padding-inline: 0.6rem;
+                    font-size: 1.5rem;
+                    outline: none;
+                    border-radius: 3px;
+                    border: none;
+                }
+                & .passwordStrengthMeter {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    margin-top: 0.7rem;
+                }
+                & .passwordRequirement {
+                    margin-top: 0.6rem;
+                }
+            }
+        } 
+        & .button_container {
+            width: 85%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding-inline: 2rem;
+            margin-block: 1rem;
+
+            & a {
+                text-decoration: none;
+                padding: 1.3rem 2.3rem;
+                margin-inline: 0.8rem;
+                border-radius: 40px;
+                font-size: 1.2rem;
+                font-weight: bolder;
+                background-color: #d5cea3;
+                border:none;
+                cursor: pointer;
+                color: #333;
+            }
+
+            & button[type="reset"] {
+                padding: 1.3rem 2.3rem;
+                margin-inline: 0.8rem;
+                border-radius: 40px;
+                font-size: 1.2rem;
+                font-weight: bolder;
+                background-color: #d5cea3;
+                border:none;
+                cursor: pointer;
+            }
+
+            & button[type="submit"] {
+                padding: 1.3rem 2.3rem;
+                border-radius: 40px;
+                font-size: 1.2rem;
+                font-weight: bolder;
+                background-color: #333;
+                border:none;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+    }
+
+    & .menu_container {
+        width: 600px;
+        height: auto;
+        padding-inline: 1.2rem;
+        background-color: #dedede71;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & .menu_icon {
+            width: 200px;
+            height: auto;
+            padding-top: 4rem;
+
+            & img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+        
+        & h1 {
+            font-size: 3rem;
+            padding-block: 2rem;
+            color: #fff;
+            text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        & .menu_button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-radius: 20px;
+            padding-bottom: 2rem;
+
+            & a#login {
+                text-decoration: none;
+                padding: 1.3rem 2.3rem;
+                margin-inline: 0.8rem;
+                border-radius: 40px;
+                font-size: 1.7rem;
+                font-weight: bolder;
+                background-color: var(--cream);
+                border:none;
+                cursor: pointer;
+                color: var(--Brown);
+                width: 350px;
+                margin-block: 0.5rem;
+                text-align: center;
+            }
+
+            & a#register {
+                text-decoration: none;
+                padding: 1.3rem 2.3rem;
+                margin-inline: 0.8rem;
+                border-radius: 40px;
+                font-size: 1.7rem;
+                font-weight: bolder;
+                background-color: var(--Brown);
+                border:none;
+                cursor: pointer;
+                color:  #fff;
+                width: 350px;
+                margin-block: 0.5rem;
+                text-align: center;
+            }
+        }
+    }
+}

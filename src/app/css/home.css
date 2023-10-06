@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cover_header {
+    background: url("https://www.pictureframesexpress.co.uk/blog/wp-content/uploads/2020/05/7-Tips-to-Finding-Art-Inspiration-Header-1024x649.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    object-fit: contain;
+    height: 800px;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+
+    & h1 {
+        text-align: center;
+        font-size: 5rem;
+        text-shadow: 2px 2px 2px #333;
+    }
+    & h3 {
+        text-align: center;
+        font-size: 1rem;
+        text-shadow: 2px 2px 2px #333;
+    }
+}
+
+.text_headline {
+    background-color: #fff;
+    padding-block: 0.8rem;
+    & p {
+        text-align: center;
+    }
+}
+
+.section_container:nth-child(odd) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    background-color: #1a120b;
+    
+    & .section_image_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex: 1;
+
+        & .rectangle_graphic {
+            width: 400px;
+            height: 550px;
+            position: absolute;
+            transform: translate(-20% ,-14%);
+            border: 10px solid #c69749;
+        }
+
+        & .image_container {
+            width: 400px;
+            height: 550px;
+            z-index: 1;
+            & .image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+    & .section_description_container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100%;
+        color: #e5e5cb;
+        & h2 {
+            font-size: 4rem;
+            transform: translateX(-15%);
+        }
+        & p {
+            margin-block: 1.2rem;
+            font-size: 1.2rem;
+            width: 600px;
+            text-wrap: wrap;
+            line-height: 40px;
+            text-align: left;
+        }
+        & small {
+            font-size: 1rem;
+            width: 800px;
+            text-align: center;
+        }
+    }
+}
+
+.section_container:nth-child(even) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    background-color: #fff;
+    
+    & .section_image_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex: 0.7;
+
+        & .rectangle_graphic {
+            width: 400px;
+            height: 550px;
+            position: absolute;
+            transform: translate(20% ,-14%);
+            border: 10px solid #c69749;
+        }
+
+        & .image_container {
+            width: 400px;
+            height: 550px;
+            z-index: 1;
+            & .image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+    & .section_description_container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100%;
+        text-align: left;
+        color: #1a120b;
+        & h2 {
+            font-size: 4rem;
+            transform: translateX(-35%);
+        }
+        & p {
+            margin-block: 1.2rem;
+            font-size: 1.2rem;
+            width: 600px;
+            text-wrap: wrap;
+            line-height: 40px;
+            text-align: left;
+        }
+        & small {
+            font-size: 1rem;
+            margin-left: 5rem;
+            width: 800px;
+            text-align: center;
+        }
+    }
+}
