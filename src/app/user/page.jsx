@@ -93,7 +93,8 @@ export default function page() {
                         {
                             fakeData.map(item => (
                                 <div>
-                                    <Image src={item.img} style={{objectFit:'cover' ,borderRadius: '30px'}} width={670} height={670}/>
+                                    <Image src={item.img} style={{objectFit:'cover' ,borderRadius: '15px'}} width={450} height={450}/>
+                                    <h3>Title Name</h3>
                                     <p>Post Date: {item.date}</p>
                                 </div>
                             ))

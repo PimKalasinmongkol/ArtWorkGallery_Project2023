@@ -20,13 +20,13 @@ export default function ArtWork() {
                         <div className='artwork-header'>
                             {/* User Profile */}
                             <div>
-                                <Image src={"https://images.pexels.com/photos/1462630/pexels-photo-1462630.jpeg?auto=compress&cs=tinysrgb&w=1600"} width={90} height={90} alt="test" />
+                                <Image src={"https://images.pexels.com/photos/1462630/pexels-photo-1462630.jpeg?auto=compress&cs=tinysrgb&w=1600"} width={60} height={60} alt="test" />
                                 <p>Username</p>
                             </div>
                         </div>
                         <div className='artwork-image'>
                             {/* ArtWork Image */}
-                            <Image src={"https://images.pexels.com/photos/3700245/pexels-photo-3700245.jpeg?auto=compress&cs=tinysrgb&w=1600"} width={600} height={600} alt='test' />
+                            <Image src={"https://images.pexels.com/photos/3700245/pexels-photo-3700245.jpeg?auto=compress&cs=tinysrgb&w=1600"} width={450} height={450} alt='test' />
                             <div className='artwork-like-comment'>
                                 <div>
                                     <FontAwesomeIcon icon={faHeart} size='2x' />
