@@ -29,7 +29,7 @@ export default function signUp() {
   let upperCase_regex = /[A-Z]$/;
   let lowerCase_regex = /[a-z]$/;
   let numerical_regex = /[0-9]$/;
-  let mail_regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
+  let mail_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   let meterLevel = {
     bad_color: "red",
@@ -37,7 +37,7 @@ export default function signUp() {
     good_color: "green",
   };
 
-  const FormValidation = (event) => {
+  const FormValidation = async(event) => {
     event.preventDefault();
 
     console.log(password);
@@ -58,14 +58,16 @@ export default function signUp() {
     }
     
     if (password.length > 7 && password.length <= 20) {
-      if (password != passwordConfirm) {
+      if (password === passwordConfirm) {
+        checkPassword = true
+        console.log("Password is correct");
+      } else {
         MySwal.fire({
           icon: 'error',
           text: 'confirm password is not match!',
         })
         checkPassword = false
-      } else {
-        checkPassword = true
+        console.log("Password is not match!");
       }
     } else {
       MySwal.fire({
@@ -73,6 +75,7 @@ export default function signUp() {
         text: 'Password length must be between 7 and 20 characters',
       })
       checkPassword = false
+      console.log("Password is shorter than 20 characters");
     }
 
     if (username.length < 3) {
@@ -85,20 +88,56 @@ export default function signUp() {
       checkUsername = true
     }
 
+    console.log(checkEmail);
+    console.log(checkUsername);
+    console.log(checkPassword);
+
     if (checkEmail && checkPassword && checkUsername) {
-      MySwal.fire({
-        icon: 'success',
-        title: 'Registration Success',
-        text: 'Welcome to Artist Gallery'
-      })
-      return true
+      try {
+        const request = await fetch("http://localhost:4000/user/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            email: email,
+            password: password
+          })
+        }
+        )
+        const data = await request.json();
+        console.log("data: " + JSON.stringify(data));
+        MySwal.fire({
+          icon: 'success',
+          title: 'Registration Success',
+          text: 'Welcome to Artist Gallery',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      } catch (error) {
+        MySwal.fire({
+          icon: 'error',
+          title: 'database server request Failed',
+          text: error.message,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+      setTimeout(() => {
+        return true
+      }, 3000);
     } else {
       MySwal.fire({
         icon: 'error',
         title: 'Registration Failed',
-        text: 'Something went wrong'
+        text: 'Something went wrong',
+        showConfirmButton: false,
+        timer: 1500
       })
-      return false
+      setTimeout(() => {
+        return false
+      }, 3000);
     }
   };
 

@@ -10,12 +10,9 @@ export default function page() {
   return (
     <>
       <main>
-        <a href="/" id="backTo">
-          Back
-        </a>
         <div className="menu_container">
             <div className="menu_icon">
-                <Image src={Logo} />
+                <Image src={Logo} alt="menu_logo" />
             </div>
             <div className="menu_header">
                 <h1>Welcome</h1>

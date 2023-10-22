@@ -1,0 +1,30 @@
+:root {
+    --bg-color: #1a120b;
+    --bg-follower: #cacaca;
+    --text-profile: #d5cea3;
+    --btn: #ffd600;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+    width: 100vw;
+    height: 100vh;
+
+    & .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 500px;
+        margin-inline: 10rem;
+    }
+}

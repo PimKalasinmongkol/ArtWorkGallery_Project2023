@@ -1,0 +1,89 @@
+:root {
+    --bg-color: #1a120b;
+    --bg-follower: #cacaca;
+    --text-profile: #d5cea3;
+    --btn: #ffd600;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+    width: 100vw;
+    height: 100vh;
+
+    & .container {
+        width: 500px;
+        margin-inline: 10rem;
+        
+        & .user_profile {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-self: flex-start !important;
+            margin-bottom: 1rem;
+
+            & img {
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            & h2 {
+                color: var(--text-profile);
+                margin-left: 1rem;
+            }
+        }
+
+        & .user_upload {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+
+            & img {
+                border-radius: 15px;
+            }
+
+            & input[type="file"]::file-selector-button {
+                background-color: #d5cea3;
+                padding: 1rem;
+                border-radius: 15px;
+                cursor: pointer;
+                margin-block: 1rem;
+            }
+
+            & input[type="text"] {
+                outline: none;
+                border: none;
+                border-bottom: 1px solid rgba(223, 223, 223, 0.2) !important;
+                padding: 1rem;
+                font-size: 1rem;
+                background-color: #1a120b;
+                color: var(--text-profile);
+            }
+
+            & div {
+                display: inline-flex;
+                justify-content: flex-end;
+                margin-block: 1rem;
+
+                & input[type="submit"] {
+                    width: 150px;
+                    padding: 1rem;
+                    background-color: var(--btn);
+                    font-size: 1.2rem;
+                    font-weight: 800;
+                    border-radius: 20px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

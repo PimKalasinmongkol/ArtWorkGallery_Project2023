@@ -1,13 +1,48 @@
+'use client'
+
+import React ,{useState ,useEffect} from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Head from "next/head";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+
 import Navbar from "./components/Navbar";
+import ArtWork from "./components/ArtWork";
+
 import "./css/home.css";
 
 import Monalisa from "./img/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
 import StarryNight from "./img/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg";
 import theLastSupper from "./img/Última_Cena_-_Da_Vinci_5.jpg";
 
+const MySwal = withReactContent(Swal);
+
 export default function Home() {
+  const router = useRouter()
+
+  const [user ,setUser] = useState({})
+  const [isLoggedIn ,setIsLoggedIn] = useState(false)
+
+  const session = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/user/session')
+      const data = await response.json()
+
+      if (data.loggedIn) {
+        console.log(data.user_session);
+        setUser(data.user_session)
+        setIsLoggedIn(true)
+      }
+    } catch (error) {
+      console.error("Request failed : " + JSON.stringify(error));
+    }
+  }
+
+  useEffect(() => {
+    session()
+  }, [isLoggedIn])
+
   const data_section_ = [
     {
       img: Monalisa,
@@ -50,12 +85,22 @@ export default function Home() {
       footer_desc: "",
     },
   ];
+
   return (
-    <div>
-      <Navbar is_enableSearchBar={true} />
+    <>
+      <Head>
+        <title>ArtGalley</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Navbar is_enableSearchBar={true} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <main className="container">
         <div className="cover_header">
           <h1>ART GALLERY</h1>
+          {isLoggedIn ? 
+            <h2>Welcome ,{user.user_username}</h2>
+          :
+           <h2></h2>
+          }
           <h3>"Art is not what you see ,but what you make other see."</h3>
         </div>
         <div className="text_headline">
@@ -71,7 +116,7 @@ export default function Home() {
               <div className="section_image_container">
                 <div className="rectangle_graphic"></div>
                 <div className="image_container">
-                  <Image src={item.img} sizes="32" className="image" />
+                  <Image src={item.img} sizes="32" className="image" alt={item.nameHeader} />
                 </div>
               </div>
               <div className="section_description_container">
@@ -98,13 +143,14 @@ export default function Home() {
               <div className="section_image_container">
                 <div className="rectangle_graphic"></div>
                 <div className="image_container">
-                  <Image src={item.img} sizes="32" className="image" />
+                  <Image src={item.img} sizes="32" className="image" alt={item.nameHeader} />
                 </div>
               </div>
             </div>
           ))}
         </div>
+        <ArtWork />
       </main>
-    </div>
+    </>
   );
 }
