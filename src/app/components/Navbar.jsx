@@ -32,24 +32,33 @@ export default function Navbar({is_enableSearchBar ,isLoggedIn ,setIsLoggedIn}) 
   }
 
   const handleLogout = async() => {
-    try {
-      const response = await fetch("http://localhost:4000/user/logout")
-      const data = await response.json()
-      console.log(data)
-      setIsLoggedIn(false)
-    } catch (error) {
-      console.error("Request failed : " + JSON.stringify(error));
-    }
-
     MySwal.fire({
-      icon: "success",
-      title: "Logged out successfully",
-      showConfirmButton: false,
-      timer: 1500,
+      icon: "warning",
+      title: "Are you sure you want to log out",
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Logged Out!'
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch("http://localhost:4000/user/logout")
+          const data = await response.json()
+          setIsLoggedIn(false)
+        } catch (error) {
+          console.error("Request failed : " + JSON.stringify(error));
+        }
+        MySwal.fire({
+          icon:'success',
+          title: 'Logged Out',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        router.push("/signInUpMenu/")
+      } else {
+
+      }
     });
-    setTimeout(() => {
-      router.push("/signInUpMenu/")
-    }, 1500)
   }
   
   return (

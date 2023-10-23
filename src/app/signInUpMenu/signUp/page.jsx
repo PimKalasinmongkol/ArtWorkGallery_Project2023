@@ -331,7 +331,7 @@ export default function signUp() {
                             textShadow: "2px 2px 2px rgba(0, 0, 0, 0.3)",
                           }}
                         >
-                          At least one number
+                          At least one lowercase letter
                         </p>
                       </li>
                       <li style={{ listStyleType: "none" }}>
@@ -343,7 +343,7 @@ export default function signUp() {
                             textShadow: "2px 2px 2px rgba(0, 0, 0, 0.3)",
                           }}
                         >
-                          At least one special symbol
+                          At least one number
                         </p>
                       </li>
                       <li style={{ listStyleType: "none" }}>

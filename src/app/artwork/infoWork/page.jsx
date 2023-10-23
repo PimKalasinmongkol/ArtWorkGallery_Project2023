@@ -27,6 +27,10 @@ export default function page() {
         console.log(data.user_session);
         setUser(data.user_session)
         setIsLoggedIn(true)
+        router.push('/artwork/infoWork')
+      } else {
+        setIsLoggedIn(false)
+        router.push('/signInUpMenu')
       }
     } catch (error) {
       console.error("Request failed : " + JSON.stringify(error));
@@ -35,11 +39,6 @@ export default function page() {
 
   useEffect(() => {
     session()
-    if (isLoggedIn == false) {
-      router.push("/signInUpMenu/")
-    } else {
-      router.push("/infoWork")
-    }
   }, [isLoggedIn])
 
   return (

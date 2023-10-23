@@ -5,6 +5,8 @@ import Image from 'next/image'
 import Head from 'next/head'
 import Navbar from '@/app/components/Navbar'
 
+import images from '../../createImageImport'
+
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
 
@@ -13,60 +15,77 @@ import '../../css/editProfile.css'
 const MySwal = withReactContent(Swal)
 
 export default function page() {
-    const router = useRouter()
+  const router = useRouter()
+  
+  const [user ,setUser] = useState({})
+  const [isLoggedIn ,setIsLoggedIn] = useState(false)
+  
+  const [userData ,setUserData] = useState({
+    user_id: '',
+    user_username: '',
+    user_email: '',
+    user_password: '',
+    user_artistname: '',
+    user_imageProfile: null,
+  })
 
-    const [user ,setUser] = useState({})
-    const [isLoggedIn ,setIsLoggedIn] = useState(false)
-
-    const [id ,setId] = useState(null)
-    const [username ,setUsername] = useState("")
-    const [email ,setEmail] = useState("")
-    const [password ,setPassword] = useState("")
-    const [artistname ,setArtistname] = useState("")
-    const [imageProfile ,setImageProfile] = useState(null)
-
-    const handleSetUsername = (event) => {
-      setUsername(event.target.value)
+    const session = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/user/session')
+        const data = await response.json()
+    
+        if (data.loggedIn) {
+          console.log(data.user_session)
+          setUser(data.user_session)
+          setIsLoggedIn(true)
+          setUserData(data.user_session)
+          router.push('/user/editProfile')
+        } else {
+          setIsLoggedIn(false)
+          router.push('/signInUpMenu')
+        }
+      } catch (error) {
+        console.error("Request failed : " + JSON.stringify(error));
+      }
     }
     
-    const handleSetEmail = (event) => {
-      setEmail(event.target.value)
+    useEffect(() => {
+      session()
+    }, [isLoggedIn])
+
+    const handleSetUserData = (event) => {
+      setUserData({
+      ...userData,
+        [event.target.name] : event.target.value
+      })
     }
 
-    const handleSetPassword = (event) => {
-      setPassword(event.target.value)
-    }
-
-    const handleSetArtistname = (event) => {
-      setArtistname(event.target.value)
-    }
-
-    const handleSetImageProfile = (event) => {
-      setImageProfile(event.target.files[0])
-    }
-
-    const handleSetId = (event) => {
-      setId(event.target.value)
+    const handleSetUserDataFile = (event) => {
+      setUserData({
+      ...userData,
+        user_imageProfile : event.target.files[0]
+      })
     }
 
     const handleSubmit = async(event) => {
       event.preventDefault()
 
       const formData = new FormData()
-      formData.append('id' ,id)
-      formData.append('username',username)
-      formData.append('email',email)
-      formData.append('password',password)
-      formData.append('artistname',artistname)
-      formData.append('file',imageProfile)
+      formData.append('id', userData.user_id)
+      formData.append('username', userData.user_username)
+      formData.append('password', userData.user_password)
+      formData.append('email', userData.user_email)
+      formData.append('artistname', userData.user_artistname)
+      formData.append('imageprofile', userData.user_imageProfile)
 
       try {
-        const request = await fetch('http://localhost:4000/user/editProfile', {
+        const request = await fetch('http://localhost:4000/user/editUserData', {
           method: 'POST',
           body: formData
         })
         const data = await request.json()
-        console.log(data)
+        console.log(data.update_data)
+        console.log(data.message);
         MySwal.fire({
           icon:'success',
           title: 'update profile success',
@@ -84,30 +103,13 @@ export default function page() {
         })
       }
     }
-  
-    const session = async () => {
-      try {
-        const response = await fetch('http://localhost:4000/user/session')
-        const data = await response.json()
-  
-        if (data.loggedIn) {
-          console.log(data.user_session);
-          setUser(data.user_session)
-          setIsLoggedIn(true)
-        }
-      } catch (error) {
-        console.error("Request failed : " + JSON.stringify(error));
+
+    Object.keys(images).forEach((image) => {
+      if (!image.startsWith('src')) {
+        console.log(image);
       }
-    }
-  
-    useEffect(() => {
-      session()
-      if (isLoggedIn == false) {
-        router.push("/signInUpMenu/")
-      } else {
-        router.push("/user/editProfile")
-      }
-    }, [isLoggedIn])
+    })
+
   return (
     <>
         <Head>
@@ -120,34 +122,44 @@ export default function page() {
         <Navbar is_enableSearchBar={false} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <main>
             <div className='user-edit-container'>
-                <div className='user-edit-image-container'>
-                    <Image src={"https://images.pexels.com/photos/18693471/pexels-photo-18693471.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"} width={500} height={500} />
-                </div>
+                {
+                  Object.keys(images).map((image) => {
+                    if (!image.startsWith('src')) {
+                      if (image === user.user_imageprofile) {
+                        return (
+                          <div className='user-edit-image-container'>
+                            <Image src={images[image]} className='user-edit-image-src' alt='user_edit_image' width={500} height={500} />
+                          </div>
+                        )
+                      }
+                    }
+                  })
+                }
                 <form className='user-edit-form-container' onSubmit={handleSubmit}>
-                    <input type="hidden" name='id' value={user.user_id} onChange={handleSetId} />
+                    <input type="hidden" name='user_id' value={userData.user_id} onChange={handleSetUserData}  />
                     <div className='user-edit-form-input'>
                         <label htmlFor="">Username</label>
-                        <input type="text" name="username" id="username" value={user.user_username} onChange={handleSetUsername} />
+                        <input type="text" name="user_username" id="username" value={userData.user_username} onChange={handleSetUserData} />
                     </div>
                     <br />
                     <div className='user-edit-form-input'>
                         <label htmlFor="">ArtistName</label>
-                        <input type="text" name="artistname" id="artistname" value={user.user_artistname} onChange={handleSetArtistname} />
+                        <input type="text" name="user_artistname" id="artistname" value={userData.user_artistname} onChange={handleSetUserData} />
                     </div>
                     <br />
                     <div className='user-edit-form-input'>
                         <label htmlFor="">Email</label>
-                        <input type="email" name="email" id="email" value={user.user_email} onChange={handleSetEmail} />
+                        <input type="email" name="user_email" id="email" value={userData.user_email} onChange={handleSetUserData} />
                     </div>
                     <br />
                     <div className='user-edit-form-input'>
                         <label htmlFor="">Password</label>
-                        <input type="password" name="password" id="password" value={user.user_password} onChange={handleSetPassword} />
+                        <input type="password" name="user_password" id="password" value={userData.user_password} onChange={handleSetUserData} />
                     </div>
                     <br />
                     <div className='user-edit-form-input'>
                         <label htmlFor="">Image</label>
-                        <input type="file" name="image" id="image" value={user.user_imageProfile} onChange={handleSetImageProfile} />
+                        <input type="file" name="user_imageProfile" id="image" onChange={handleSetUserDataFile} />
                     </div>
                     <br />
                     <div className='user-edit-form-input-submit'>

@@ -33,6 +33,10 @@ export default function Home() {
         console.log(data.user_session);
         setUser(data.user_session)
         setIsLoggedIn(true)
+        router.push('/')
+      } else {
+        setIsLoggedIn(false)
+        router.push('/signInUpMenu')
       }
     } catch (error) {
       console.error("Request failed : " + JSON.stringify(error));

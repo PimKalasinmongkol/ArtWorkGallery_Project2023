@@ -81,7 +81,7 @@ export default function Login() {
           </div>
           <div className="form_container">
             <div className="form_group">
-              <p>Email</p>
+              <p>Username</p>
               <input
                 type="text"
                 name="username"

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Artifika&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Artifika&family=Bungee+Spice&display=swap');
 
 :root {
     --form_search: #3e3e3e7e;
@@ -149,7 +149,7 @@ nav {
         width: 100%;
         height: 100%;
         margin-block: 12rem;
-        margin-inline: 2rem;
+        margin-inline: 1rem;
 
         & a {
             font-size: 1.5rem;
@@ -159,7 +159,7 @@ nav {
             text-decoration: none;
             border-bottom: 2px solid #fff;
             text-align: center;
-            width: 70%;
+            width: 75%;
             transition: all 0.1s ease-out;
 
             &:hover {

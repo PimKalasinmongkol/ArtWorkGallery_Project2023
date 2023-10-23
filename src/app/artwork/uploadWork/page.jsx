@@ -6,6 +6,8 @@ import Navbar from '@/app/components/Navbar'
 import Head from 'next/head'
 import Image from 'next/image'
 
+import images from '../../createImageImport'
+
 import '../../css/uploadWork.css'
 
 export default function page() {
@@ -13,6 +15,14 @@ export default function page() {
 
   const [user ,setUser] = useState({})
   const [isLoggedIn ,setIsLoggedIn] = useState(false)
+
+  const [artworkData,setArtworkData] = useState({
+    artwork_title: '',
+    artwork_author: '',
+    artwork_work: null,
+    artwork_like: null,
+    artwork_date: null,
+  })
 
   const session = async () => {
     try {
@@ -23,6 +33,10 @@ export default function page() {
         console.log(data.user_session);
         setUser(data.user_session)
         setIsLoggedIn(true)
+        router.push('/artwork/uploadWork')
+      } else {
+        setIsLoggedIn(false)
+        router.push('/signInUpMenu')
       }
     } catch (error) {
       console.error("Request failed : " + JSON.stringify(error));
@@ -31,12 +45,10 @@ export default function page() {
 
   useEffect(() => {
     session()
-    if (isLoggedIn == false) {
-      router.push("/signInUpMenu/")
-    } else {
-      router.push("/artwork/uploadWork")
-    }
   }, [isLoggedIn])
+
+  let date_timestamp = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}` 
+
   return (
     <>
         <Head>
@@ -49,14 +61,26 @@ export default function page() {
         <Navbar is_enableSearchBar={false} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <main>
             <div className='container'>
-                <div className='user_profile'>
-                    <Image src={"https://images.pexels.com/photos/8923536/pexels-photo-8923536.jpeg?auto=compress&cs=tinysrgb&w=1600"} width={80} height={80} />
-                    <h2>Username</h2>
-                </div>
+                {
+                  Object.keys(images).map((image) => {
+                    if (!image.startsWith('src')) {
+                      if (image === user.user_imageprofile) {
+                        return (
+                          <div className='user_profile'>
+                            <Image src={images[image]} className='user-edit-image-src' alt='user_edit_image' width={70} height={70} />
+                            <h2>{user.user_artistname}</h2>
+                          </div>
+                        )
+                      }
+                    }
+                  })
+                }
                 <form className='user_upload' action='' encType=''>
-                    <Image src={"https://images.pexels.com/photos/5212653/pexels-photo-5212653.jpeg?auto=compress&cs=tinysrgb&w=1600"} width={500} height={500} />
-                    <input type="file" name="image" id="image" />
-                    <input type='text' name='title' id='title' placeholder='Title...' />
+                    <Image src={"https://images.pexels.com/photos/5212653/pexels-photo-5212653.jpeg?auto=compress&cs=tinysrgb&w=1600"} width={400} height={400} />
+                    <input type="hidden" name="artwork_author" value={user.user_username} />
+                    <input type="hidden" name='artwork_date' value={date_timestamp} />
+                    <input type="file" name="artwork_work" id="image" />
+                    <input type='text' name='artwork_title' id='title' placeholder='Title...' />
                     <div>
                         <input type="submit" value="Upload" />
                     </div>

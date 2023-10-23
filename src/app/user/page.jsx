@@ -8,10 +8,12 @@ import "../css/userProfile.css"
 import "../css/Font.css"
 import Navbar from '../components/Navbar'
 
+import images from '../createImageImport'
+
 import Logo from "../img/Logo.png"
 
 export default function page() {
-    const router = useRouter()
+  const router = useRouter()
 
   const [user ,setUser] = useState({})
   const [isLoggedIn ,setIsLoggedIn] = useState(false)
@@ -25,6 +27,10 @@ export default function page() {
         console.log(data.user_session)
         setUser(data.user_session)
         setIsLoggedIn(true)
+        router.push('/user')
+      } else {
+        setIsLoggedIn(false)
+        router.push('/signInUpMenu')
       }
     } catch (error) {
       console.error("Request failed : " + JSON.stringify(error));
@@ -33,11 +39,6 @@ export default function page() {
 
   useEffect(() => {
     session()
-    if (isLoggedIn == false) {
-      router.push("/signInUpMenu/")
-    } else {
-      router.push("/user")
-    }
   }, [isLoggedIn])
 
     const fakeData = [
@@ -79,12 +80,22 @@ export default function page() {
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <main>
             <div className='user_header'>
-                <div className='user_image_header'>
-                    <Image src={Logo} />
-                </div>
+                {
+                  Object.keys(images).map((image) => {
+                    if (!image.startsWith('src')) {
+                      if (image === user.user_imageprofile) {
+                        return (
+                          <div className='user_image_header'>
+                            <Image src={images[image]} className='user-edit-image-src' alt='user_edit_image' width={500} height={500} />
+                          </div>
+                        )
+                      }
+                    }
+                  })
+                }
                 <div className='user_info_header'>
-                    <h2>{user.user_username}</h2>
-                    <p>description profile</p>
+                    <h2>{user.user_artistname}</h2>
+                    <p>{user.user_username}</p>
                 </div>
             </div>
             <div className='user_artwork'>
