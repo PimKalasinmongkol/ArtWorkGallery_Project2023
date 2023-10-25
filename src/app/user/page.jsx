@@ -16,6 +16,7 @@ export default function page() {
   const router = useRouter()
 
   const [user ,setUser] = useState({})
+  const [artwork ,setArtworkData] = useState([])
   const [isLoggedIn ,setIsLoggedIn] = useState(false)
 
   const session = async () => {
@@ -25,6 +26,7 @@ export default function page() {
 
       if (data.loggedIn) {
         console.log(data.user_session)
+        console.log(data.user_session.user_username);
         setUser(data.user_session)
         setIsLoggedIn(true)
         router.push('/user')
@@ -37,36 +39,25 @@ export default function page() {
     }
   }
 
+  const artwork_session = async () => {
+    try {
+      const response = await fetch(`http://localhost:4000/gallery/gallery_user/${user.user_username}`)
+      const data = await response.json()
+
+      setArtworkData(data)
+      console.log(data)
+    } catch (error) {
+      console.error("Request failed : " + JSON.stringify(error));
+    }
+  }
+
   useEffect(() => {
     session()
   }, [isLoggedIn])
 
-    const fakeData = [
-        {
-            img: "https://images.pexels.com/photos/18714307/pexels-photo-18714307/free-photo-of-delara.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-            date: new Date().toLocaleDateString().toString() + " " + new Date().toLocaleTimeString().toString()
-        },
-        {
-            img: "https://images.pexels.com/photos/18573394/pexels-photo-18573394/free-photo-of-people-cycling-along-the-canal.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-            date: new Date().toLocaleDateString().toString() + " " + new Date().toLocaleTimeString().toString()
-        },
-        {
-            img: "https://images.pexels.com/photos/9663326/pexels-photo-9663326.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-            date: new Date().toLocaleDateString().toString() + " " + new Date().toLocaleTimeString().toString()
-        },
-        {
-            img: "https://images.pexels.com/photos/12626953/pexels-photo-12626953.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-            date: new Date().toLocaleDateString().toString() + " " + new Date().toLocaleTimeString().toString()
-        },
-        {
-            img: "https://images.pexels.com/photos/18624571/pexels-photo-18624571/free-photo-of-brunette-woman-in-coat-looking-up-in-evening.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-            date: new Date().toLocaleDateString().toString() + " " + new Date().toLocaleTimeString().toString()
-        },
-        {
-            img: "https://images.pexels.com/photos/18693471/pexels-photo-18693471.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-            date: new Date().toLocaleDateString().toString() + " " + new Date().toLocaleTimeString().toString()
-        },
-    ]
+  artwork.forEach((item) => {
+    console.log(item)
+  })
 
   return (
     <>
@@ -79,7 +70,7 @@ export default function page() {
         </Head>
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <main>
-            <div className='user_header'>
+            <div className='user_header' onLoad={artwork_session}>
                 {
                   Object.keys(images).map((image) => {
                     if (!image.startsWith('src')) {
@@ -102,13 +93,21 @@ export default function page() {
                 <div className='user_artwork'>
                     <div className='artwork_container'>
                         {
-                            fakeData.map(item => (
-                                <div>
-                                    <Image src={item.img} style={{objectFit:'cover' ,borderRadius: '15px'}} width={450} height={450}/>
-                                    <h3>Title Name</h3>
-                                    <p>Post Date: {item.date}</p>
-                                </div>
-                            ))
+                          artwork.map((item) => (
+                            Object.keys(images).map((image) => {
+                              if (!image.startsWith('src')) {
+                                if (image === item.gallery_work) {
+                                  return (
+                                    <div>
+                                      <Image src={images[image]} style={{objectFit:'cover' ,borderRadius: '15px'}} width={450} height={450}/>
+                                      <h3>{item.gallery_title}</h3>
+                                      <p>Post Date: {item.gallery_date}</p>
+                                    </div>
+                                  )
+                                }
+                              }
+                            })
+                          ))
                         }
                     </div>
                 </div>

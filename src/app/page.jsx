@@ -20,9 +20,11 @@ const MySwal = withReactContent(Swal);
 
 export default function Home() {
   const router = useRouter()
-
+  
   const [user ,setUser] = useState({})
+  const [allUser ,setAllUser] = useState([])
   const [isLoggedIn ,setIsLoggedIn] = useState(false)
+  const [artwork, setArtwork] = useState([]);
 
   const session = async () => {
     try {
@@ -30,7 +32,7 @@ export default function Home() {
       const data = await response.json()
 
       if (data.loggedIn) {
-        console.log(data.user_session);
+        console.log(data.user_session)
         setUser(data.user_session)
         setIsLoggedIn(true)
         router.push('/')
@@ -39,13 +41,40 @@ export default function Home() {
         router.push('/signInUpMenu')
       }
     } catch (error) {
-      console.error("Request failed : " + JSON.stringify(error));
+      console.error("Request failed : " + JSON.stringify(error))
+    }
+  }
+
+  const getArtwork = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/gallery/all");
+      const data = await response.json();
+      setArtwork(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Failed to fetch artwork");
+    }
+  };
+
+  const getAllUser = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/user/getAllUser");
+      const data = await response.json();
+      setAllUser(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Failed to fetch user");
     }
   }
 
   useEffect(() => {
     session()
+    getArtwork()
+    getAllUser()
   }, [isLoggedIn])
+
+  console.log("--------");
+  console.log(artwork);
 
   const data_section_ = [
     {
@@ -153,7 +182,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <ArtWork />
+        <ArtWork artwork={artwork} allUser={allUser} />
       </main>
     </>
   );
