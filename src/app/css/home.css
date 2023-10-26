@@ -1,15 +1,9 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .cover_header {
     background: url("https://www.pictureframesexpress.co.uk/blog/wp-content/uploads/2020/05/7-Tips-to-Finding-Art-Inspiration-Header-1024x649.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
     object-fit: contain;
-    height: 800px;
+    height: 700px;
     width:100%;
     display: flex;
     align-items: center;
@@ -19,7 +13,7 @@
 
     & h1 {
         text-align: center;
-        font-size: 5rem;
+        font-size: 4rem;
         text-shadow: 2px 2px 2px #333;
     }
     & h2 {
@@ -46,7 +40,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 800px;
+    height: 600px;
     background-color: #1a120b;
     
     & .section_image_container {
@@ -56,16 +50,16 @@
         flex: 1;
 
         & .rectangle_graphic {
-            width: 400px;
-            height: 550px;
+            width: 250px;
+            height: 400px;
             position: absolute;
             transform: translate(-20% ,-14%);
-            border: 10px solid #c69749;
+            border: 8px solid #c69749;
         }
 
         & .image_container {
-            width: 400px;
-            height: 550px;
+            width: 250px;
+            height: 400px;
             z-index: 1;
             & .image {
                 width: 100%;
@@ -82,19 +76,19 @@
         height: 100%;
         color: #e5e5cb;
         & h2 {
-            font-size: 4rem;
+            font-size: 3rem;
             transform: translateX(-15%);
         }
         & p {
             margin-block: 1.2rem;
-            font-size: 1.2rem;
+            font-size: 1rem;
             width: 600px;
             text-wrap: wrap;
             line-height: 40px;
             text-align: left;
         }
         & small {
-            font-size: 1rem;
+            font-size: 0.9rem;
             width: 800px;
             text-align: center;
         }
@@ -105,7 +99,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 800px;
+    height: 600px;
     background-color: #fff;
     
     & .section_image_container {
@@ -115,16 +109,16 @@
         flex: 0.7;
 
         & .rectangle_graphic {
-            width: 400px;
-            height: 550px;
+            width: 250px;
+            height: 400px;
             position: absolute;
             transform: translate(20% ,-14%);
             border: 10px solid #c69749;
         }
 
         & .image_container {
-            width: 400px;
-            height: 550px;
+            width: 250px;
+            height: 400px;
             z-index: 1;
             & .image {
                 width: 100%;
@@ -143,20 +137,19 @@
         text-align: left;
         color: #1a120b;
         & h2 {
-            font-size: 4rem;
-            transform: translateX(-35%);
+            font-size: 3rem;
+            transform: translateX(-45%);
         }
         & p {
             margin-block: 1.2rem;
-            font-size: 1.2rem;
+            font-size: 1rem;
             width: 600px;
             text-wrap: wrap;
             line-height: 40px;
             text-align: left;
         }
         & small {
-            font-size: 1rem;
-            margin-left: 5rem;
+            font-size: 0.9rem;
             width: 800px;
             text-align: center;
         }

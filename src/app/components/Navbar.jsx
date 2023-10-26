@@ -83,7 +83,7 @@ export default function Navbar({is_enableSearchBar ,isLoggedIn ,setIsLoggedIn}) 
             onClick={() => {
               console.log("clicked");
             }}
-            size="2x"
+            size='lg'
             color="#fff"
           />
         </div>

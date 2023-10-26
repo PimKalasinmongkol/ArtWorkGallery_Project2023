@@ -6,13 +6,21 @@
 
 .artWork-container {
     display: grid;
-    gap: 50px;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-    place-content: center;
-    margin-bottom: 3rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 50px;
+    place-items: center;
+    margin-block: 3rem;
+
+    @media only screen and (max-width: 1460px) {
+        grid-template-columns: 1fr 1fr; /* Change to two columns on smaller screens */
+    }
+    
+    @media only screen and (max-width: 1170px) {
+        grid-template-columns: 1fr; /* Change to single column on even smaller screens */
+    }
 
     & .artWork-box {
-        width: 100%;
+        width: 450px;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -21,15 +29,18 @@
         & .artwork-header {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
             align-items: center;
-            width: 100%;
-            padding-block: 2rem;
-            padding-inline: 4rem;
+            width: 450px;
+            padding-block: 0.8rem;
+            margin-bottom: 1rem;
+            box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.219);
+            border-radius: 50px;
 
             & div {
                 display: inline-flex;
                 align-items: center;
+                width: 450px;
+                padding-left: 1rem;
 
                 & img {
                     border-radius: 50px;
@@ -37,18 +48,38 @@
 
                 & p {
                     margin-inline-start: 1rem;
-                    font-size: 1.5rem;
+                    font-size: 1.2rem;
                 }
             }
         }
 
         & .artwork-image {
-            border:1px solid black; 
+            box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.3);
             border-radius: 20px;
             overflow: hidden;
 
+            & img {
+                object-fit: cover;
+            }
+
+            .artwork-info {
+                margin-block: 0.5rem;
+                padding-left: 0.8rem;
+
+                & .artwork-info-title {
+                    font-size: 1rem;
+                    font-weight: 700;
+                }
+
+                & .artwork-info-date {
+                    font-size: 0.7rem;
+                    font-weight: 500;
+                    padding-block: 0.8rem;
+                }
+            }
+
             & .artwork-like-comment {
-                padding: 1rem;
+                padding: 0.8rem;
 
                 & div {
                     display: inline-flex;
@@ -56,7 +87,7 @@
                     align-items: center;
 
                     & p {
-                        font-size: 1.2rem;
+                        font-size: 1rem;
                         margin-inline-start: 1rem;
                     }
                 }
@@ -64,3 +95,4 @@
         }
     }
 }
+

@@ -45,32 +45,8 @@ export default function Home() {
     }
   }
 
-  const getArtwork = async () => {
-    try {
-      const response = await fetch("http://localhost:4000/gallery/all");
-      const data = await response.json();
-      setArtwork(data);
-      console.log(data);
-    } catch (error) {
-      console.error("Failed to fetch artwork");
-    }
-  };
-
-  const getAllUser = async () => {
-    try {
-      const response = await fetch("http://localhost:4000/user/getAllUser");
-      const data = await response.json();
-      setAllUser(data);
-      console.log(data);
-    } catch (error) {
-      console.error("Failed to fetch user");
-    }
-  }
-
   useEffect(() => {
     session()
-    getArtwork()
-    getAllUser()
   }, [isLoggedIn])
 
   console.log("--------");
@@ -182,7 +158,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <ArtWork artwork={artwork} allUser={allUser} />
+        <ArtWork />
       </main>
     </>
   );

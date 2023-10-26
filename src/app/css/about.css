@@ -1,0 +1,49 @@
+main {
+    background-color: #1A120B;
+    margin: auto;
+    padding: auto;
+    color: #fff;
+    position: fixed;
+    height: 100%;
+}
+
+.head {
+    display: flex;
+    margin-top: 8rem;
+    padding-left: 2%;
+}
+
+.box_profile {
+    display: flex;
+    justify-content: center;
+    padding: 0 20% 0 20%;
+}
+
+.Photo {
+    margin: 20px;
+    text-align: center;
+}
+
+.profile {
+    border-radius: 50%;
+    padding: 2%;
+}
+
+.footer-section {
+    display: flex;
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    background-color: #735F32;
+    padding: 1% 2% 1% 2%;
+}
+
+.text_footer{
+    width: 50%;
+}
+
+.QR{
+    width: 50%;
+    text-align: end;
+    margin: 2px 0 2px 0;
+}

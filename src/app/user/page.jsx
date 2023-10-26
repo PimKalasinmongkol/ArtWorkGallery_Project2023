@@ -99,9 +99,9 @@ export default function page() {
                                 if (image === item.gallery_work) {
                                   return (
                                     <div>
-                                      <Image src={images[image]} style={{objectFit:'cover' ,borderRadius: '15px'}} width={450} height={450}/>
-                                      <h3>{item.gallery_title}</h3>
-                                      <p>Post Date: {item.gallery_date}</p>
+                                      <Image src={images[image]} style={{objectFit:'cover'}} width={400} height={400}/>
+                                      <h3>{item.gallery_title.toUpperCase()}</h3>
+                                      <p>Post Date: {item.gallery_date.slice(0 ,-5).replace('T' ," ")}</p>
                                     </div>
                                   )
                                 }

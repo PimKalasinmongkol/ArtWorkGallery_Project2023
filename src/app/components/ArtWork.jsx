@@ -12,58 +12,72 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
 
-export default function ArtWork({ artwork, allUser }) {
+export default function ArtWork() {
+  const [artwork, setArtwork] = useState([])
+
+  const getArtwork = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/gallery/getAllUserAndGallery");
+      const data = await response.json()
+      setArtwork(data)
+      console.log(data)
+    } catch (error) {
+      console.error("Failed to fetch artwork")
+    }
+  };
+
+  useEffect(() => {
+    getArtwork();
+  }, [])
+
   return (
     <>
       <div className="artWork-container">
-        {artwork.map((item) =>
-          allUser.map((user) => (
-            Object.keys(images).map((image) => {
-              if (user.user_username === item.gallery_author) {
-                if (!image.startsWith("src")) {
-                  if (image === item.gallery_work) {
-                    return (
-                      <div className="artWork-box" key={item.gallery_id}>
-                        <div className="artwork-header">
-                          {/* User Profile */}
-                          <div>
-                            <Image
-                              src={images[allUser.user_username]}
-                              width={60}
-                              height={60}
-                              alt="test"
-                            />
-                            <p>{item.gallery_author}</p>
-                          </div>
-                        </div>
-                        <div className="artwork-image">
-                          {/* ArtWork Image */}
-                          <Image
-                            src={images[image]}
-                            width={450}
-                            height={450}
-                            alt="test"
-                          />
-                          <div className="artwork-like-comment">
-                            <div>
-                              <FontAwesomeIcon icon={faHeart} size="2x" />
-                              <p>29300</p>
-                            </div>
-                            <div>
-                              <FontAwesomeIcon icon={faComment} size="2x" />
-                              <p>1880</p>
-                            </div>
-                            {/* show count like and comment */}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                }
-              }
-            })
-          ))
-        )}
+        {artwork.map((item) => {
+          const user = artwork.find(
+            (user) => user.user_username === item.gallery_author
+          );
+          const userImage = images[user.user_imageprofile];
+          const artworkImage = images[item.gallery_work];
+
+          return (
+            <div className="artWork-box" key={item.gallery_id}>
+              <div className="artwork-header">
+                <div>
+                  <Image
+                    src={userImage}
+                    width={60}
+                    height={60}
+                    alt="User Profile"
+                  />
+                  <p>{item.gallery_author}</p>
+                </div>
+              </div>
+              <div className="artwork-image">
+                <Image
+                  src={artworkImage}
+                  width={450}
+                  height={450}
+                  alt="Artwork"
+                />
+                <div className="artwork-info">
+                  <p className="artwork-info-title">{item.gallery_title.toUpperCase()}</p>
+                  <small className="artwork-info-date">{item.gallery_date.slice(0 ,-5).replace('T' ," ")}</small>
+                </div>
+                <div className="artwork-like-comment">
+                  <div>
+                    <FontAwesomeIcon icon={faHeart} size="2x" />
+                    <p>29300</p>
+                  </div>
+                  <div>
+                    <FontAwesomeIcon icon={faComment} size="2x" />
+                    <p>1880</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </>
   );

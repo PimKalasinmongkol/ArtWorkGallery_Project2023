@@ -37,7 +37,7 @@ main {
     }
     
     & form {
-        width: 600px;
+        width: 500px;
         height: auto;
         padding-inline: 1.2rem;
         background-color: #dedede71;
@@ -48,7 +48,7 @@ main {
         align-items: center;
         
         & h1 {
-            font-size: 4rem;
+            font-size: 3.2rem;
             padding-block: 2rem;
             color: #fff;
             text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
@@ -66,7 +66,7 @@ main {
 
             & .form_group {
                 & p {
-                    font-size: 1.2rem;
+                    font-size: 1rem;
                     padding-block: 0.5rem;
                     font-weight: bolder;
                 }
@@ -74,7 +74,7 @@ main {
                 & input {
                     padding-block: 0.5rem;
                     padding-inline: 0.6rem;
-                    font-size: 1.5rem;
+                    font-size: 1.2rem;
                     outline: none;
                     border-radius: 3px;
                     border: none;
@@ -100,10 +100,10 @@ main {
 
             & a {
                 text-decoration: none;
-                padding: 1.3rem 2.3rem;
+                padding: 1rem 1.1rem;
                 margin-inline: 0.8rem;
                 border-radius: 40px;
-                font-size: 1.2rem;
+                font-size: 1rem;
                 font-weight: bolder;
                 background-color: #d5cea3;
                 border:none;
@@ -112,10 +112,10 @@ main {
             }
 
             & button[type="reset"] {
-                padding: 1.3rem 2.3rem;
+                padding: 1rem 1.1rem;
                 margin-inline: 0.8rem;
                 border-radius: 40px;
-                font-size: 1.2rem;
+                font-size: 1rem;
                 font-weight: bolder;
                 background-color: #d5cea3;
                 border:none;
@@ -123,9 +123,9 @@ main {
             }
 
             & button[type="submit"] {
-                padding: 1.3rem 2.3rem;
+                padding: 1rem 1.1rem;
                 border-radius: 40px;
-                font-size: 1.2rem;
+                font-size: 1rem;
                 font-weight: bolder;
                 background-color: #333;
                 border:none;
@@ -136,7 +136,7 @@ main {
     }
 
     & .menu_container {
-        width: 600px;
+        width: 530px;
         height: auto;
         padding-inline: 1.2rem;
         background-color: #dedede71;
@@ -147,7 +147,7 @@ main {
         align-items: center;
 
         & .menu_icon {
-            width: 200px;
+            width: 160px;
             height: auto;
             padding-top: 4rem;
 
@@ -159,7 +159,7 @@ main {
         }
         
         & h1 {
-            font-size: 3rem;
+            font-size: 2.4rem;
             padding-block: 2rem;
             color: #fff;
             text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
@@ -175,32 +175,32 @@ main {
 
             & a#login {
                 text-decoration: none;
-                padding: 1.3rem 2.3rem;
+                padding: 1.2rem 2rem;
                 margin-inline: 0.8rem;
                 border-radius: 40px;
-                font-size: 1.7rem;
+                font-size: 1.3rem;
                 font-weight: bolder;
                 background-color: var(--cream);
                 border:none;
                 cursor: pointer;
                 color: var(--Brown);
-                width: 350px;
+                width: 300px;
                 margin-block: 0.5rem;
                 text-align: center;
             }
 
             & a#register {
                 text-decoration: none;
-                padding: 1.3rem 2.3rem;
+                padding: 1.2rem 2rem;
                 margin-inline: 0.8rem;
                 border-radius: 40px;
-                font-size: 1.7rem;
+                font-size: 1.3rem;
                 font-weight: bolder;
                 background-color: var(--Brown);
                 border:none;
                 cursor: pointer;
                 color:  #fff;
-                width: 350px;
+                width: 300px;
                 margin-block: 0.5rem;
                 text-align: center;
             }
