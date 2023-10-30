@@ -6,7 +6,7 @@ import "../css/signInAndUp.css"
 
 import Logo from "../img/Logo.png";
 
-export default function page() {
+export default function Page() {
   return (
     <>
       <main>

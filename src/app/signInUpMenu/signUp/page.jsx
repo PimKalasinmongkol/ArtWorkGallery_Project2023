@@ -9,7 +9,7 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal)
 
-export default function signUp() {
+export default function Page() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [emailValidate ,setEmailValidate] = useState(null);
@@ -207,7 +207,7 @@ export default function signUp() {
           <div className="form_container">
             <div className="form_group">
               <p>Email</p>
-              <input type="email" name="email" id="email" onChange={handleSetEmail} required />
+              <input type="email" name="email" id="email" onChange={handleSetEmail} placeholder="Enter your email" required />
               {
                 emailValidate == false ?
                 <p style={{color: "red"}}>Email format is invalid</p>
@@ -221,6 +221,7 @@ export default function signUp() {
                 type="password"
                 name="password"
                 id="password"
+                placeholder="Enter your password"
                 onChange={handleSetPassword}
                 required
               />
@@ -369,13 +370,14 @@ export default function signUp() {
                 type="password"
                 name="passwordConfirm"
                 id="passwordConfirm"
+                placeholder="Enter confirm password"
                 onChange={handleSetPasswordConfirm}
                 required
               />
             </div>
             <div className="form_group">
               <p>Username</p>
-              <input type="text" name="username" id="username" onChange={handleSetUsername} required />
+              <input type="text" name="username" id="username" onChange={handleSetUsername} placeholder="Enter your username" required />
             </div>
           </div>
           <div className="button_container">

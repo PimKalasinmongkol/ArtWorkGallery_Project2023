@@ -14,7 +14,7 @@ import '../../css/editProfile.css'
 
 const MySwal = withReactContent(Swal)
 
-export default function page() {
+export default function Page() {
   const router = useRouter()
   
   const [user ,setUser] = useState({})

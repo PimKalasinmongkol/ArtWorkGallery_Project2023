@@ -12,7 +12,7 @@ import images from '../createImageImport'
 
 import Logo from "../img/Logo.png"
 
-export default function page() {
+export default function Page() {
   const router = useRouter()
 
   const [user ,setUser] = useState({})
@@ -25,8 +25,6 @@ export default function page() {
       const data = await response.json()
 
       if (data.loggedIn) {
-        console.log(data.user_session)
-        console.log(data.user_session.user_username);
         setUser(data.user_session)
         setIsLoggedIn(true)
         router.push('/user')
@@ -43,9 +41,7 @@ export default function page() {
     try {
       const response = await fetch(`http://localhost:4000/gallery/gallery_user/${user.user_username}`)
       const data = await response.json()
-
       setArtworkData(data)
-      console.log(data)
     } catch (error) {
       console.error("Request failed : " + JSON.stringify(error));
     }
@@ -54,10 +50,6 @@ export default function page() {
   useEffect(() => {
     session()
   }, [isLoggedIn])
-
-  artwork.forEach((item) => {
-    console.log(item)
-  })
 
   return (
     <>
@@ -84,8 +76,14 @@ export default function page() {
                     }
                   })
                 }
+                {
+                  user.user_imageprofile === null && 
+                  <div className='user_image_header'>
+                    <Image src={Logo} className='user-edit-image-src' alt='user_edit_image' width={500} height={500} />
+                  </div>
+                }
                 <div className='user_info_header'>
-                    <h2>{user.user_artistname}</h2>
+                    <h2>{user.user_artistname === null ? `${user.user_username}${Math.floor(Math.random() * 10000)}`: user.user_artistname}</h2>
                     <p>{user.user_username}</p>
                 </div>
             </div>

@@ -8,6 +8,12 @@ const nextConfig = {
             port: '',
             pathname: '/photos/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'cdn.pic.in.th',
+            port: '',
+            pathname: '/file/picinth/**',
+          }
         ],
     },
 }

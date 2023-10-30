@@ -80,9 +80,6 @@ export default function Navbar({is_enableSearchBar ,isLoggedIn ,setIsLoggedIn}) 
         <div className="hamburger-navbar" onClick={handleToggleNav}>
           <FontAwesomeIcon
             icon={faBars}
-            onClick={() => {
-              console.log("clicked");
-            }}
             size='lg'
             color="#fff"
           />

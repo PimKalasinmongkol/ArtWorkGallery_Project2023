@@ -10,7 +10,7 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
-export default function Login() {
+export default function Page() {
   const [username ,setUsername] = useState("")
   const [password ,setPassword] = useState("")
 
@@ -82,6 +82,7 @@ export default function Login() {
                 name="username"
                 id="username"
                 onChange={handleSetUsername}
+                placeholder="Enter your username"
                 required
               />
             </div>
@@ -91,6 +92,7 @@ export default function Login() {
                 type="password"
                 name="password"
                 id="password"
+                placeholder="Enter your password"
                 onChange={handleSetPassword}
                 required
               />

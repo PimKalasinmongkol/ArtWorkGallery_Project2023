@@ -15,7 +15,7 @@ import '../../css/uploadWork.css'
 
 const MySwal = withReactContent(Swal)
 
-export default function page() {
+export default function Page() {
   const router = useRouter()
 
   const [user ,setUser] = useState({})
@@ -85,30 +85,45 @@ export default function page() {
     const formData = new FormData()
     formData.append('title', artworkData.artwork_title)
     formData.append('author', user.user_username)
+    formData.append('userID', user.user_id)
     formData.append('work', artworkData.artwork_work)
+
+    MySwal.fire({
+      title: 'Do you want to upload a new artwork?',
+      text: "If you uploaded a new artwork ,You can't edit or delete it",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Upload',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const uploader = async () => {
+          try {
+            const request = await fetch('http://localhost:4000/gallery/createArtwork',{
+              method: 'POST',
+              body: formData
+            })
+            const data = await request.json()
+            MySwal.fire({
+              icon:'success',
+              title: 'create artwork success',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          } catch (err) {
+            console.error('Error creating artwork : ' + err.message);
+            MySwal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+        }
+        uploader()
+      }
+    })
     
-    try {
-      const request = await fetch('http://localhost:4000/gallery/createArtwork',{
-        method: 'POST',
-        body: formData
-      })
-      const data = await request.json()
-      MySwal.fire({
-        icon:'success',
-        title: 'create artwork success',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    } catch (err) {
-      console.error('Error creating artwork : ' + err.message);
-      MySwal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }
   }
 
   

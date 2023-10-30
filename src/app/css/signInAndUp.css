@@ -79,6 +79,7 @@ main {
                     border-radius: 3px;
                     border: none;
                 }
+                
                 & .passwordStrengthMeter {
                     display: flex;
                     flex-direction: row;
@@ -90,6 +91,7 @@ main {
                 }
             }
         } 
+
         & .button_container {
             width: 85%;
             display: flex;

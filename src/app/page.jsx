@@ -22,9 +22,7 @@ export default function Home() {
   const router = useRouter()
   
   const [user ,setUser] = useState({})
-  const [allUser ,setAllUser] = useState([])
   const [isLoggedIn ,setIsLoggedIn] = useState(false)
-  const [artwork, setArtwork] = useState([]);
 
   const session = async () => {
     try {
@@ -32,7 +30,6 @@ export default function Home() {
       const data = await response.json()
 
       if (data.loggedIn) {
-        console.log(data.user_session)
         setUser(data.user_session)
         setIsLoggedIn(true)
         router.push('/')
@@ -48,9 +45,6 @@ export default function Home() {
   useEffect(() => {
     session()
   }, [isLoggedIn])
-
-  console.log("--------");
-  console.log(artwork);
 
   const data_section_ = [
     {
@@ -102,7 +96,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar is_enableSearchBar={true} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      <main className="container">
+      <main className="container" onLoad={(event) => {
+        event.preventDefault()
+      }}>
         <div className="cover_header">
           <h1>ART GALLERY</h1>
           {isLoggedIn ? 
@@ -158,7 +154,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <ArtWork />
+        <ArtWork user={user} />
       </main>
     </>
   );
