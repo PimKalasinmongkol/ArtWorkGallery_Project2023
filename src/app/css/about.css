@@ -23,11 +23,13 @@ main {
 .Photo {
     margin: 20px;
     text-align: center;
+    object-fit: cover;
 }
 
 .profile {
     border-radius: 50%;
     padding: 2%;
+    object-fit: cover;
 }
 
 .footer-section {

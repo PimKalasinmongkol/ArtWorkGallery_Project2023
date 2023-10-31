@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import "../css/about.css";
 
 import PimImage from "../img/366429773_1204065290290657_7747114279393195006_n.png"
+import EarthImage from "../img/162140761_1798966966924867_4805580599542522532_n_edit.png"
 import KU_QR from "../img/KU SRC.png"
 
 export default function page() {
@@ -47,20 +48,20 @@ export default function page() {
         <div className="box_profile">
           <div className="Photo">
             <Image src={PimImage} alt="profile" width={300} height={300} className="profile" />
-            <p>Pim Kalasinmongol</p>
-            <p>position</p>
+            <p>Pim Kalasinmongkol</p>
+            <p>CEO ,Project Manager ,UX/UI Designer</p>
+          </div>
+
+          <div className="Photo">
+            <Image src={EarthImage} alt="profile" width={300} height={300} className="profile" />
+            <p>Warapon Jitsook</p>
+            <p>CTO ,Software Engineer</p>
           </div>
 
           <div className="Photo">
             <Image src={PimImage} alt="profile" width={300} height={300} className="profile" />
-            <p>Pim Kalasinmongol</p>
-            <p>position</p>
-          </div>
-
-          <div className="Photo">
-            <Image src={PimImage} alt="profile" width={300} height={300} className="profile" />
-            <p>Pim Kalasinmongol</p>
-            <p>position</p>
+            <p>Pawarisa Jan-pho</p>
+            <p>Business Analysis ,Presentation Designer</p>
           </div>
         </div>
         <footer className="footer-section">
@@ -68,6 +69,7 @@ export default function page() {
             <p>Location : Kasetsart Univercity ,Sriracha</p>
             <p>Contact : 022-222-2222</p>
             <p>Email : ku.src@ku.th</p>
+            <p>This Web Application designed and developed by Pim Technologies Co.,Ltd.</p>
           </div>
           <div className="QR">
             <Image src={KU_QR} alt="KU-SRC" width={120} height={120} />
