@@ -97,27 +97,6 @@ export default function Navbar({is_enableSearchBar ,isLoggedIn ,setIsLoggedIn}) 
           <div></div>
         }
       </div>
-      {
-        is_enableSearchBar ? 
-        <div className="form_search">
-          <form className="form_search_">
-            <input
-              type="search"
-              name="search"
-              placeholder="search keyword"
-              onChange={handleSetSearch}
-            />
-            <button type="submit">
-              <FontAwesomeIcon
-                icon={faMagnifyingGlass}
-                className="icon_search"
-              />
-            </button>
-          </form>
-        </div>
-        :
-        <div></div>
-      }
     </>
   );
 }

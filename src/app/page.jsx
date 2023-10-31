@@ -96,9 +96,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar is_enableSearchBar={true} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      <main className="container" onLoad={(event) => {
-        event.preventDefault()
-      }}>
+      <main className="container">
         <div className="cover_header">
           <h1>ART GALLERY</h1>
           {isLoggedIn ? 
