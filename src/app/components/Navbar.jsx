@@ -1,20 +1,15 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "../css/navbar.css";
 import Logo from "../img/Logo.png";
-
 import { useRouter } from "next/navigation";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-
 const MySwal = withReactContent(Swal);
 
 export default function Navbar({is_enableSearchBar ,isLoggedIn ,setIsLoggedIn}) {

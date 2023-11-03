@@ -1,50 +1,48 @@
-'use client'
-
-import React ,{useState ,useEffect} from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Head from "next/head";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-
 import Navbar from "./components/Navbar";
 import ArtWork from "./components/ArtWork";
-
 import "./css/home.css";
-
 import Monalisa from "./img/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
 import StarryNight from "./img/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg";
 import theLastSupper from "./img/Última_Cena_-_Da_Vinci_5.jpg";
-
+import GirlScream from './img/5.-The-Scream-–-Edvard-Munch.jpg';
+import GirlWithPearlEarring from './img/7.-Girl-With-A-Pearl-Earring-–-Johannes-Vermeer.jpg';
+import SelfPortrait from './img/9.-Self-–-Portrait-Without-Beard-–-Vincent-van-Gogh.jpg';
 const MySwal = withReactContent(Swal);
 
 export default function Home() {
-  const router = useRouter()
-  
-  const [user ,setUser] = useState({})
-  const [isLoggedIn ,setIsLoggedIn] = useState(false)
+  const router = useRouter();
+
+  const [user, setUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const session = async () => {
     try {
-      const response = await fetch('http://localhost:4000/user/session')
-      const data = await response.json()
+      const response = await fetch("http://localhost:4000/user/session");
+      const data = await response.json();
 
       if (data.loggedIn) {
-        setUser(data.user_session)
-        setIsLoggedIn(true)
-        router.push('/')
+        setUser(data.user_session);
+        setIsLoggedIn(true);
+        router.push("/");
       } else {
-        setIsLoggedIn(false)
-        router.push('/signInUpMenu')
+        setIsLoggedIn(false);
+        router.push("/signInUpMenu");
       }
     } catch (error) {
-      console.error("Request failed : " + JSON.stringify(error))
+      console.error("Request failed : " + JSON.stringify(error));
     }
-  }
+  };
 
   useEffect(() => {
-    session()
-  }, [isLoggedIn])
+    session();
+  }, [isLoggedIn]);
 
   const data_section_ = [
     {
@@ -87,23 +85,60 @@ export default function Home() {
       `,
       footer_desc: "",
     },
+    {
+      img: GirlScream,
+      nameHeader: "Girl's Scream",
+      description: `
+        Artist   Edvard Munch
+        Year   1893TypeOil, tempera, pastel and crayon on cardboard
+        Movemen   tProto-Expressionism
+        Dimensions   91 cm × 73.5 cm (36 in × 28.9 in)
+        Location   National Gallery and Munch Museum, Oslo, Norway
+      `,
+      footer_desc: "",
+    },
+    {
+      img: GirlWithPearlEarring,
+      nameHeader: "Girl With A Pearl Earring",
+      description: `
+        Artist   Johannes Vermeer
+        Year   c. 1665
+        Type   Tronie
+        Medium   Oil on canvas
+        Movement   Dutch Golden Age painting
+        Dimensions   44.5 cm × 39 cm (17.5 in × 15 in)
+        LocationMauritshuis, The Hague, Netherlands
+      `,
+      footer_desc: "",
+    },
+    {
+      img: SelfPortrait,
+      nameHeader: "Self Portrait Without Beard",
+      description: `
+        Artist   Vincent van Gogh
+        Year   1889
+        Medium   Oil on canvas
+        Dimensions   65 cm × 54 cm (26 in × 21 in)
+        `,
+      footer_desc: "",
+    }
   ];
 
   return (
     <>
       <Head>
-        <title>ArtGalley</title>
+        <title>ArtGallery</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar is_enableSearchBar={true} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Navbar
+        is_enableSearchBar={true}
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+      />
       <main className="container">
         <div className="cover_header">
           <h1>ART GALLERY</h1>
-          {isLoggedIn ? 
-            <h2>Welcome ,{user.user_username}</h2>
-          :
-           <h2></h2>
-          }
+          {isLoggedIn ? <h2>Welcome ,{user.user_username}</h2> : <h2></h2>}
           <h3>"Art is not what you see ,but what you make other see."</h3>
         </div>
         <div className="text_headline">
@@ -113,44 +148,28 @@ export default function Home() {
           </p>
         </div>
         <div className="section_example_art">
-          {data_section_.map((item ,id) => (
-            id % 2 == 0 ?
-            <div className="section_container" key={id}>
-              <div className="section_image_container">
-                <div className="rectangle_graphic"></div>
-                <div className="image_container">
-                  <Image src={item.img} sizes="32" className="image" alt={item.nameHeader} />
+          <figure>
+            {data_section_.map((item, id) => (
+              <div className="section_container" key={id}>
+                <div className="section_image_container">
+                  <div className="rectangle_graphic"></div>
+                  <div className="image_container">
+                    <Image
+                      src={item.img}
+                      sizes="32"
+                      className="image"
+                      alt={item.nameHeader}
+                    />
+                  </div>
+                </div>
+                <div className="section_description_container">
+                  <h2>{item.nameHeader}</h2>
+                  <p>{item.description}</p>
+                  <small>{item.footer_desc}</small>
                 </div>
               </div>
-              <div className="section_description_container">
-                <h2>{item.nameHeader}</h2>
-                <p>
-                  {item.description}
-                </p>
-                <small>
-                  {item.footer_desc}
-                </small>
-              </div>
-            </div>
-            :
-            <div className="section_container" key={id}>
-              <div className="section_description_container">
-                <h2>{item.nameHeader}</h2>
-                <p>
-                  {item.description}
-                </p>
-                <small>
-                  {item.footer_desc}
-                </small>
-              </div>
-              <div className="section_image_container">
-                <div className="rectangle_graphic"></div>
-                <div className="image_container">
-                  <Image src={item.img} sizes="32" className="image" alt={item.nameHeader} />
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </figure>
         </div>
         <ArtWork user={user} />
       </main>

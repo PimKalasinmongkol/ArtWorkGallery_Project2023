@@ -1,13 +1,10 @@
 "use client"
-
 import React, { useState } from "react";
 import Link from "next/link";
 import "../../css/Font.css"
 import "../../css/signInAndUp.css"
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
 const MySwal = withReactContent(Swal);
 
 export default function Page() {

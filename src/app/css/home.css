@@ -1,3 +1,7 @@
+:root {
+    --step: 0;
+}
+
 .cover_header {
     background: url("https://www.pictureframesexpress.co.uk/blog/wp-content/uploads/2020/05/7-Tips-to-Finding-Art-Inspiration-Header-1024x649.jpg");
     background-repeat: no-repeat;
@@ -36,12 +40,71 @@
     }
 }
 
-.section_container:nth-child(odd) {
+.section_example_art {
+    overflow: hidden;
+    width: 100%;
+    height: 600px;
+    margin-inline: auto;
+
+    & figure {
+        position: relative;
+        width: 600%;
+        left: 0px;
+        margin: 0px;
+        display: flex;
+        flex-direction: row;
+        animation: slider 10s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        
+    }
+}
+
+@keyframes slider {
+    0% {
+        left: 0%;
+    }
+    7.5% {
+        left: 0%;
+    }
+    15% {
+        left: -100%;
+    }
+    25% {
+        left: -100%;
+    }
+    35% {
+        left: -200%;
+    }
+    45% {
+        left: -200%;
+    }
+    55% {
+        left: -300%;
+    }
+    65% {
+        left: -300%;
+    }
+    75% {
+        left: -400%;
+    }
+    85% {
+        left: -400%;
+    }
+    95% {
+        left: -500%;
+    }
+    100% {
+        left: -500%;
+    }
+}
+
+.section_container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 600px;
     background-color: #1a120b;
+    float: left;
+    width: 20%;
     
     & .section_image_container {
         display: flex;
@@ -95,7 +158,7 @@
     }
 }
 
-.section_container:nth-child(even) {
+/* .section_container:nth-child(even) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -154,4 +217,4 @@
             text-align: center;
         }
     }
-}
+} */

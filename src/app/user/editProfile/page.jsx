@@ -104,12 +104,6 @@ export default function Page() {
       }
     }
 
-    Object.keys(images).forEach((image) => {
-      if (!image.startsWith('src')) {
-        console.log(image);
-      }
-    })
-
   return (
     <>
         <Head>

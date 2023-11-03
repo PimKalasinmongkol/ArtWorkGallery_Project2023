@@ -1,29 +1,23 @@
 'use client'
-
 import React,{useState ,useEffect} from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '@/app/components/Navbar'
 import Head from 'next/head'
 import Image from 'next/image'
-
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-
 import images from '../../createImageImport'
-
 import '../../css/uploadWork.css'
-
 const MySwal = withReactContent(Swal)
 
 export default function Page() {
   const router = useRouter()
-
   const [user ,setUser] = useState({})
   const [isLoggedIn ,setIsLoggedIn] = useState(false)
   const [selectedImage ,setSelectedImage] = useState(null)
 
   const [artworkData,setArtworkData] = useState({
-    artwork_title: '',
+    artwork_title: null,
     artwork_author: '',
     artwork_work: null,
   })
@@ -69,7 +63,7 @@ export default function Page() {
   const handleFormSubmit = async(event) => {
     event.preventDefault()
     
-    if (artworkData.artwork_title === null & artworkData.artwork_work === null) {
+    if ((artworkData.artwork_title === null || artworkData.artwork_title === undefined || artworkData.artwork_title.length == 0) || (artworkData.artwork_work === null || artworkData.artwork_work === undefined)) {
       MySwal.fire({
         icon: 'error',
         title: 'Oops...',

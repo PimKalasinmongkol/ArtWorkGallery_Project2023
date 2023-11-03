@@ -1,9 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
 import "../../css/signInAndUp.css";
 import "../../css/Font.css";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 

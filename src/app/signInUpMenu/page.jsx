@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import "../css/Font.css";
 import "../css/signInAndUp.css"
-
 import Logo from "../img/Logo.png";
 
 export default function Page() {

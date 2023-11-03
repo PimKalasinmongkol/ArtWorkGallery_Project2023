@@ -7,6 +7,7 @@
 :root {
     --Brown: #1a120b;
     --cream: #e5e5cb;
+    --orange: #FFD600;
 }
 
 main {
@@ -180,9 +181,9 @@ main {
                 padding: 1.2rem 2rem;
                 margin-inline: 0.8rem;
                 border-radius: 40px;
-                font-size: 1.3rem;
+                font-size: 1.5rem;
                 font-weight: bolder;
-                background-color: var(--cream);
+                background-color: var(--orange);
                 border:none;
                 cursor: pointer;
                 color: var(--Brown);
@@ -196,7 +197,7 @@ main {
                 padding: 1.2rem 2rem;
                 margin-inline: 0.8rem;
                 border-radius: 40px;
-                font-size: 1.3rem;
+                font-size: 1.5rem;
                 font-weight: bolder;
                 background-color: var(--Brown);
                 border:none;

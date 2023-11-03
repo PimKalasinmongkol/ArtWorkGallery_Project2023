@@ -1,7 +1,5 @@
 'use client'
-
 import React, {useState ,useEffect} from 'react'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
@@ -26,13 +24,13 @@ export default function SearchForm({
           <input
             type="search"
             name="search"
-            placeholder="search title..."
+            placeholder="search artwork title..."
             style={{
                 fontSize: '1.2rem',
                 padding: '0.7rem 1.5rem',
                 outline: '1px solid #ccc',
                 border: 'none',
-                boxShadow: '2px 2px 2px rgba(0,0,0,0.1)',
+                boxShadow: '3px 3px 3px rgba(0,0,0,0.1)',
                 borderRadius: '50px',
                 width: '40%'
             }}

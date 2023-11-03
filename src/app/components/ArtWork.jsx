@@ -2,21 +2,15 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
 import "../css/showArtWork.css";
-
 import images from "../createImageImport";
-
 import SearchForm from "./SearchForm";
-
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-
 const MySwal = withReactContent(Swal);
 
 export default function ArtWork({ user }) {
@@ -26,7 +20,6 @@ export default function ArtWork({ user }) {
   const [allComment, setAllComment] = useState([]);
   const [isLike, setIsLike] = useState(false);
   const [commentContent, setCommentContent] = useState("");
-
   const [searchGallery, setSearchGallery] = useState("");
 
   const getAllUser = async () => {
@@ -178,10 +171,12 @@ export default function ArtWork({ user }) {
         setSearchGallery={setSearchGallery}
       />
       <div className="artWork-container">
-        {artwork.map((item ,index) => {
+        {artwork.map((item, index) => {
           if (searchGallery.length > 0) {
             if (
-              item.gallery_title.toLowerCase().includes(searchGallery.toLowerCase())
+              item.gallery_title
+                .toLowerCase()
+                .includes(searchGallery.toLowerCase())
             ) {
               let countLike = 0;
               let countComment = 0;
@@ -225,7 +220,8 @@ export default function ArtWork({ user }) {
                         {item.gallery_title.toUpperCase()}
                       </p>
                       <small className="artwork-info-date">
-                        {item.gallery_date.slice(0, -5).replace("T", " ")}
+                        {"Post Date : " +
+                          item.gallery_date.slice(0, -5).replace("T", " ")}
                       </small>
                     </div>
                     <div
@@ -262,7 +258,11 @@ export default function ArtWork({ user }) {
                               <li key={comment.comment_id}>
                                 <h4>{user_artistname}</h4>
                                 <p>{comment.comment_content}</p>
-                                <small>{comment.comment_date}</small>
+                                <small>
+                                  {comment.comment_date
+                                    .slice(0, -5)
+                                    .replace("T", " ")}
+                                </small>
                               </li>
                             );
                           }
@@ -357,7 +357,8 @@ export default function ArtWork({ user }) {
                       {item.gallery_title.toUpperCase()}
                     </p>
                     <small className="artwork-info-date">
-                      {item.gallery_date.slice(0, -5).replace("T", " ")}
+                      {"Post Date : " +
+                        item.gallery_date.slice(0, -5).replace("T", " ")}
                     </small>
                   </div>
                   <div
@@ -394,7 +395,11 @@ export default function ArtWork({ user }) {
                             <li key={comment.comment_id}>
                               <h4>{user_artistname}</h4>
                               <p>{comment.comment_content}</p>
-                              <small>{comment.comment_date}</small>
+                              <small>
+                                {comment.comment_date
+                                  .slice(0, -5)
+                                  .replace("T", " ")}
+                              </small>
                             </li>
                           );
                         }
