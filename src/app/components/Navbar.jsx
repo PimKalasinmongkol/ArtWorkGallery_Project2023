@@ -14,7 +14,6 @@ const MySwal = withReactContent(Swal);
 
 export default function Navbar({is_enableSearchBar ,isLoggedIn ,setIsLoggedIn}) {
   const router = useRouter();
-
   const [search ,setSearch] = useState("")
   const [toggleNav ,setToggleNav] = useState(false)
 
